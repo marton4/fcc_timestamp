@@ -36,15 +36,15 @@ app.get("/api/:timestamp", (req, res) => {
   
   if(Number(timestamp) && timestamp.length === 13) {
     return res.json({
-      unix: timestamp,
-      utc: new Date().toUTCString()
+      unix: parseInt(timestamp),
+      utc: new Date(parseInt(timestamp).toUTCString()
     });
   };
 
   if(new Date(timestamp).toUTCString() !== "Invalid Date") {
     return res.json({
       unix: new Date(timestamp).getTime(),
-      utc: timestamp
+      utc: new Date(timestamp).toUTCString()
     });
   };
   
